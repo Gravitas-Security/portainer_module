@@ -16,6 +16,6 @@ resource "portainer_stack" "stacks" {
   pull_image                = false                       # Pull latest image on update
   force_update              = false                       # Prune services not in compose file
   git_repository_authentication = true                   # If authentication is required
-  repository_username       = ""
-  repository_password       = ""
+  repository_username       = var.gh_uname
+  repository_password       = var.gh_pword
 }
