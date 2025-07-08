@@ -23,7 +23,7 @@ variable "portainer_pword" {
   sensitive = true
 }
 
-variable "portainer_url" {
+variable "portainer_endpoint" {
   type      = string
   sensitive = true
 }
