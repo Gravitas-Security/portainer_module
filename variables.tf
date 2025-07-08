@@ -12,3 +12,18 @@ variable "gh_pword" {
   type      = string
   sensitive = true
 }
+
+variable "portainer_uname" {
+  type      = string
+  sensitive = true
+}
+
+variable "portainer_pword" {
+  type      = string
+  sensitive = true
+}
+
+variable "portainer_url" {
+  type      = string
+  sensitive = true
+}
