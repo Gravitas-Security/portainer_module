@@ -1,5 +1,10 @@
-variable "stack_files_path" {
-  description = "Path to the directory containing Portainer stack YAML files"
+variable "published_stack_files_path" {
+  description = "Path to the directory containing Portainer stack YAML files that will be published through Cloudflare"
+  type        = string
+}
+
+variable "unpublished_stack_files_path" {
+  description = "Path to the directory containing Portainer stack YAML files that will be internal only"
   type        = string
 }
 

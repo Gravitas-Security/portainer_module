@@ -1,5 +1,5 @@
-resource "portainer_stack" "stacks" {
-  for_each = local.stack_definitions
+resource "portainer_stack" "published_stacks" {
+  for_each = local.published_stack_definitions
 
   name        = "${each.value.name}"
   deployment_type           = "standalone"
@@ -7,7 +7,29 @@ resource "portainer_stack" "stacks" {
   endpoint_id               = 2
   repository_url            = "https://github.com/CyberViking949/portainer_stacks"
   repository_reference_name = "refs/heads/main"
-  file_path_in_repository   = "/stack_files/${each.value.name}.yaml"
+  file_path_in_repository   = "/published_stack_files/${each.value.name}.yaml"
+  tlsskip_verify            = false
+
+  # Optional GitOps enhancements:
+  stack_webhook             = false                      # Enables GitOps webhook
+  update_interval           = "1m"                       # Auto-update interval
+  pull_image                = false                       # Pull latest image on update
+  force_update              = false                       # Prune services not in compose file
+  git_repository_authentication = true                   # If authentication is required
+  repository_username       = var.gh_uname
+  repository_password       = var.gh_pword
+}
+
+resource "portainer_stack" "unpublished_stacks" {
+  for_each = local.unpublished_stack_definitions
+
+  name        = "${each.value.name}"
+  deployment_type           = "standalone"
+  method                    = "repository"
+  endpoint_id               = 2
+  repository_url            = "https://github.com/CyberViking949/portainer_stacks"
+  repository_reference_name = "refs/heads/main"
+  file_path_in_repository   = "/unpublished_stack_files/${each.value.name}.yaml"
   tlsskip_verify            = false
 
   # Optional GitOps enhancements:
@@ -22,7 +44,7 @@ resource "portainer_stack" "stacks" {
 
 
 resource "cloudflare_zero_trust_access_application" "access_app" {
-  for_each = local.stack_definitions
+  for_each = local.published_stack_definitions
   zone_id    = data.cloudflare_zones.zones.zones[0].id
   domain     = "${each.key}.${var.cf_domain}"
   name       = each.key
@@ -54,12 +76,12 @@ resource "cloudflare_zero_trust_access_group" "group" {
 }
 
 resource "cloudflare_zero_trust_access_policy" "app_policy" {
-  for_each = local.stack_definitions
+  for_each = local.published_stack_definitions
   zone_id        = data.cloudflare_zones.zones.zones[0].id
   application_id = cloudflare_zero_trust_access_application.access_app[each.key].id
   name           = "${each.key}.${var.cf_domain} Access Policy"
   decision       = "allow"
-  precedence     = index(local.stack_order, each.key) + 1
+  precedence     = index(local.published_stack_order, each.key) + 1
   include {
       #login_method      = try(each.value.login_method, null)
       group = [cloudflare_zero_trust_access_group.group.id]
