@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.0](https://github.com/Gravitas-Security/portainer_module/compare/v0.3.1...v0.4.0) (2025-07-09)
+
+
+### Features
+
+* adding cloudflare code ([bc16a82](https://github.com/Gravitas-Security/portainer_module/commit/bc16a82305cfc8d173ae2fefc4867f120c37a0e6))
+* adding logic for cloudflare ([19222fa](https://github.com/Gravitas-Security/portainer_module/commit/19222fae167f37cdc1964d48bbae604805dfdc01))
+
 ## [0.3.0](https://github.com/Gravitas-Security/portainer_module/compare/v0.2.1...v0.3.0) (2025-07-09)
 
 
