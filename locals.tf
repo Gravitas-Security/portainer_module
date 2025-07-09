@@ -8,4 +8,6 @@ locals {
       content = file("${var.stack_files_path}/${file_path}")
     }
   }
+
+  stack_order = sort(keys(local.stack_definitions))
 }

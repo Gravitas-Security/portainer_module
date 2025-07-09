@@ -8,6 +8,10 @@ terraform {
       source  = "portainer/portainer"
       version = ">= 1.5.1"
     }
+    cloudflare = {
+      source  = "cloudflare/cloudflare"
+      version = "= 4.45.0"
+    }
   }
   cloud {
     organization = "gravitas-security"

@@ -27,3 +27,12 @@ variable "portainer_endpoint" {
   type      = string
   sensitive = true
 }
+
+variable "cf_domain" {
+  type    = string
+  default = "domain"
+}
+
+variable "cf_account_name" {
+  type = string
+}
