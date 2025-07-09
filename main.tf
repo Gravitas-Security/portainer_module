@@ -38,20 +38,16 @@ data "cloudflare_accounts" "account" {
 
 data "cloudflare_zones" "zones" {
   filter {
-    name = var.domain
+    name = var.cf_domain
   }
 }
 
 resource "cloudflare_zero_trust_access_group" "group" {
-  for_each = { for group in var.group : group.name => group }
   zone_id  = data.cloudflare_zones.zones.zones[0].id
-  name     = each.value.name
-  dynamic "include" {
-    for_each = try(each.value.include, null) != null ? [each.value] : []
-    content {
-      login_method = try(each.value.include["login_method"], null)
+  name     = "home"
+  include{    
+      login_method = ["fde5709d-c4a5-4a52-b368-dba11118f38b"] #Jumpcloud
     }
-  }
   lifecycle {
     ignore_changes = [id, zone_id]
   }
@@ -61,16 +57,13 @@ resource "cloudflare_zero_trust_access_policy" "app_policy" {
   for_each = local.stack_definitions
   zone_id        = data.cloudflare_zones.zones.zones[0].id
   application_id = cloudflare_zero_trust_access_application.access_app[each.key].id
-  name           = "${each.key}.${var.domain} Access Policy"
-  decision       = (each.value.decision) == null ? "allow" : each.value.action
-  precedence     = index(local.stack_definitions, each.value) + 1
-  dynamic "include" {
-    for_each = try(each.value, null) != null ? [each.value] : []
-    content {
+  name           = "${each.key}.${var.cf_domain} Access Policy"
+  decision       = "allow"
+  precedence     = index(local.stack_order, each.key) + 1
+  include {
       #login_method      = try(each.value.login_method, null)
-      group = [cloudflare_zero_trust_access_group.group[each.value.group].id]
+      group = [cloudflare_zero_trust_access_group.group.id]
       #everyone          = try(each.value.everyone, null)
-    }
   }
   lifecycle {
     ignore_changes = [ zone_id ]

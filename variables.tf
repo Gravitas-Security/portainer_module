@@ -28,16 +28,6 @@ variable "portainer_endpoint" {
   sensitive = true
 }
 
-variable "group" {
-  type = list(object({
-    name = string
-    include = object({
-      login_method = list(string)
-    })
-  }))
-  default = []
-}
-
 variable "cf_domain" {
   type    = string
   default = "domain"
