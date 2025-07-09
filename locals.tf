@@ -12,7 +12,7 @@ locals {
   unpublished_stack_file_paths = fileset(var.unpublished_stack_files_path, "*.y*ml")
 
   unpublished_stack_definitions = {
-    for file_path in local.published_stack_file_paths :
+    for file_path in local.unpublished_stack_file_paths :
     trimsuffix(trimsuffix(basename(file_path), ".yaml"), ".yml") => {
       name    = trimsuffix(trimsuffix(basename(file_path), ".yaml"), ".yml")
       content = file("${var.unpublished_stack_files_path}/${file_path}")
