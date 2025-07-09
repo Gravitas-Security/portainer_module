@@ -5,9 +5,9 @@ resource "portainer_stack" "stacks" {
   deployment_type           = "standalone"
   method                    = "repository"
   endpoint_id               = 2
-  repository_url            = "https://github.com/CyberViking949/portainer_stacks/stack_files"
+  repository_url            = "https://github.com/CyberViking949/portainer_stacks"
   repository_reference_name = "refs/heads/main"
-  file_path_in_repository   = "${each.value.name}.yaml"
+  file_path_in_repository   = "/stack_files/${each.value.name}.yaml"
   tlsskip_verify            = false
 
   # Optional GitOps enhancements:
