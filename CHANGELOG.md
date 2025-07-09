@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/Gravitas-Security/portainer_module/compare/v0.4.0...v0.5.0) (2025-07-09)
+
+
+### Features
+
+* adding logic for published vs unpublished stacks ([e4fe903](https://github.com/Gravitas-Security/portainer_module/commit/e4fe90335a45c91e09ba238d1041bc93cfd5e8f8))
+
 ## [0.4.0](https://github.com/Gravitas-Security/portainer_module/compare/v0.3.1...v0.4.0) (2025-07-09)
 
 
