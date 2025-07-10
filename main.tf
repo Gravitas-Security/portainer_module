@@ -1,7 +1,7 @@
 resource "portainer_stack" "published_stacks" {
   for_each = local.published_stack_definitions
 
-  name        = "${each.value.name}"
+  name                      = "${each.value.name}"
   deployment_type           = "standalone"
   method                    = "repository"
   endpoint_id               = 2
@@ -11,19 +11,19 @@ resource "portainer_stack" "published_stacks" {
   tlsskip_verify            = false
 
   # Optional GitOps enhancements:
-  stack_webhook             = false                      # Enables GitOps webhook
-  update_interval           = "1m"                       # Auto-update interval
-  pull_image                = false                       # Pull latest image on update
-  force_update              = true                       # Prune services not in compose file
+  stack_webhook                 = false                      # Enables GitOps webhook
+  update_interval               = "1m"                       # Auto-update interval
+  pull_image                    = false                       # Pull latest image on update
+  force_update                  = true                       # Prune services not in compose file
   git_repository_authentication = true                   # If authentication is required
-  repository_username       = var.gh_uname
-  repository_password       = var.gh_pword
+  repository_username           = var.gh_uname
+  repository_password           = var.gh_pword
 }
 
 resource "portainer_stack" "unpublished_stacks" {
   for_each = local.unpublished_stack_definitions
 
-  name        = "${each.value.name}"
+  name                      = "${each.value.name}"
   deployment_type           = "standalone"
   method                    = "repository"
   endpoint_id               = 2
@@ -33,13 +33,13 @@ resource "portainer_stack" "unpublished_stacks" {
   tlsskip_verify            = false
 
   # Optional GitOps enhancements:
-  stack_webhook             = false                      # Enables GitOps webhook
-  update_interval           = "1m"                       # Auto-update interval
-  pull_image                = false                       # Pull latest image on update
-  force_update              = true                       # Prune services not in compose file
+  stack_webhook                 = false                      # Enables GitOps webhook
+  update_interval               = "1m"                       # Auto-update interval
+  pull_image                    = false                       # Pull latest image on update
+  force_update                  = true                       # Prune services not in compose file
   git_repository_authentication = true                   # If authentication is required
-  repository_username       = var.gh_uname
-  repository_password       = var.gh_pword
+  repository_username           = var.gh_uname
+  repository_password           = var.gh_pword
 }
 
 
