@@ -8,6 +8,11 @@ variable "unpublished_stack_files_path" {
   type        = string
 }
 
+variable "env_dir" {
+  description = "Absolute path to the env_files directory"
+  type        = string
+}
+
 variable "gh_uname" {
   type      = string
   sensitive = true

@@ -18,6 +18,16 @@ resource "portainer_stack" "published_stacks" {
   git_repository_authentication = true                   # If authentication is required
   repository_username           = var.gh_uname
   repository_password           = var.gh_pword
+
+  dynamic "env" {
+  for_each = lookup(local.env_vars_map, each.key, [])
+
+  content {
+    name  = env.value.name
+    value = env.value.value
+  }
+}
+
 }
 
 resource "portainer_stack" "unpublished_stacks" {
@@ -40,6 +50,15 @@ resource "portainer_stack" "unpublished_stacks" {
   git_repository_authentication = true                   # If authentication is required
   repository_username           = var.gh_uname
   repository_password           = var.gh_pword
+
+  dynamic "env" {
+    for_each = lookup(local.env_vars_map, each.key, [])
+
+    content {
+      name  = env.value.name
+      value = env.value.value
+    }
+  }
 }
 
 
