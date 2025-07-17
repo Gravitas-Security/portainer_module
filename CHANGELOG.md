@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.2](https://github.com/Gravitas-Security/portainer_module/compare/v0.7.1...v0.7.2) (2025-07-17)
+
+
+### Bug Fixes
+
+* removing extra bracket ([583e280](https://github.com/Gravitas-Security/portainer_module/commit/583e28013b5d79f30b0cc1b83372c8100c2e0c35))
+
 ## [0.7.0](https://github.com/Gravitas-Security/portainer_module/compare/v0.6.0...v0.7.0) (2025-07-17)
 
 
