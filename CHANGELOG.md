@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.0](https://github.com/Gravitas-Security/portainer_module/compare/v0.6.0...v0.7.0) (2025-07-17)
+
+
+### Features
+
+* changing to account level policies ([c026517](https://github.com/Gravitas-Security/portainer_module/commit/c0265178c3981d22bc50829cf1bce7ac4a553e3f))
+
 ## [0.6.0](https://github.com/Gravitas-Security/portainer_module/compare/v0.5.2...v0.6.0) (2025-07-14)
 
 
