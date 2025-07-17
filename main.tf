@@ -67,7 +67,8 @@ resource "cloudflare_zero_trust_access_application" "access_app" {
   zone_id    = data.cloudflare_zones.zones.zones[0].id
   domain     = "${each.key}.${var.cf_domain}"
   name       = each.key
-  depends_on = [cloudflare_zero_trust_access_group.group]
+  policies = [ cloudflare_zero_trust_access_policy.app_policy.id ]
+  #depends_on = [cloudflare_zero_trust_access_group.group]
   lifecycle {
     ignore_changes = [zone_id]
   }
@@ -83,33 +84,27 @@ data "cloudflare_zones" "zones" {
   }
 }
 
-resource "cloudflare_zero_trust_access_group" "group" {
-  zone_id  = data.cloudflare_zones.zones.zones[0].id
-  name     = "home"
-  include{    
-      login_method = ["fde5709d-c4a5-4a52-b368-dba11118f38b"] #Jumpcloud
-    }
-  lifecycle {
-    ignore_changes = [id, zone_id]
-  }
-}
+# resource "cloudflare_zero_trust_access_group" "group" {
+#   zone_id    = data.cloudflare_zones.zones.zones[0].id
+#   name     = "${var.cf_account_name} Access Goup"
+#   include{    
+#       login_method = ["fde5709d-c4a5-4a52-b368-dba11118f38b"] #Jumpcloud
+#     }
+# }
 
 resource "cloudflare_zero_trust_access_policy" "app_policy" {
-  for_each = local.published_stack_definitions
-  zone_id        = data.cloudflare_zones.zones.zones[0].id
-  application_id = cloudflare_zero_trust_access_application.access_app[each.key].id
-  name           = "${each.key}.${var.cf_domain} Access Policy"
+  account_id = data.cloudflare_accounts.account.accounts[0].id
+  #zone_id        = data.cloudflare_zones.zones.zones[0].id
+  name           = "${var.cf_domain} Access Policy"
   decision       = "allow"
-  precedence     = index(local.published_stack_order, each.key) + 1
   include {
-      #login_method      = try(each.value.login_method, null)
-      group = [cloudflare_zero_trust_access_group.group.id]
+      login_method = ["fde5709d-c4a5-4a52-b368-dba11118f38b"]
+      #group = [cloudflare_zero_trust_access_group.group.id]
       #everyone          = try(each.value.everyone, null)
   }
   lifecycle {
-    ignore_changes = [ zone_id ]
+    create_before_destroy = true
   }
-  depends_on = [cloudflare_zero_trust_access_application.access_app]
 }
 
 

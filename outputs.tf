@@ -6,10 +6,10 @@ output "unpublished_stack_definitions" {
   value = local.unpublished_stack_definitions
 }
 
-output "cloudflare_access_group" {
-  description = "Cloudflare access group"
-  value       = cloudflare_zero_trust_access_group.group
-}
+# output "cloudflare_access_group" {
+#   description = "Cloudflare access group"
+#   value       = cloudflare_zero_trust_access_group.group
+# }
 
 output "cloudflare_access_application" {
   description = "Access Application"
