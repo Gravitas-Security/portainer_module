@@ -68,7 +68,6 @@ resource "cloudflare_zero_trust_access_application" "access_app" {
   domain     = "${each.key}.${var.cf_domain}"
   name       = each.key
   policies = [ cloudflare_zero_trust_access_policy.app_policy.id ]
-  #depends_on = [cloudflare_zero_trust_access_group.group]
   lifecycle {
     ignore_changes = [zone_id]
   }
@@ -84,27 +83,16 @@ data "cloudflare_zones" "zones" {
   }
 }
 
-# resource "cloudflare_zero_trust_access_group" "group" {
-#   zone_id    = data.cloudflare_zones.zones.zones[0].id
-#   name     = "${var.cf_account_name} Access Goup"
-#   include{    
-#       login_method = ["fde5709d-c4a5-4a52-b368-dba11118f38b"] #Jumpcloud
-#     }
-# }
-
 resource "cloudflare_zero_trust_access_policy" "app_policy" {
   account_id = data.cloudflare_accounts.account.accounts[0].id
-  #zone_id        = data.cloudflare_zones.zones.zones[0].id
   name           = "${var.cf_domain} Access Policy"
   decision       = "allow"
   include {
       login_method = ["fde5709d-c4a5-4a52-b368-dba11118f38b"]
-      #group = [cloudflare_zero_trust_access_group.group.id]
-      #everyone          = try(each.value.everyone, null)
-  }
   lifecycle {
     create_before_destroy = true
   }
+}
 }
 
 
