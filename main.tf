@@ -89,6 +89,7 @@ resource "cloudflare_zero_trust_access_policy" "app_policy" {
   decision       = "allow"
   include {
       login_method = ["fde5709d-c4a5-4a52-b368-dba11118f38b"]
+  }
   lifecycle {
     create_before_destroy = true
   }
