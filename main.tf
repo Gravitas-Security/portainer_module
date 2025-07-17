@@ -94,7 +94,6 @@ resource "cloudflare_zero_trust_access_policy" "app_policy" {
     create_before_destroy = true
   }
 }
-}
 
 
 
