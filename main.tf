@@ -11,7 +11,7 @@ resource "portainer_stack" "published_stacks" {
   tlsskip_verify            = false
 
   # Optional GitOps enhancements:
-  stack_webhook                 = false                      # Enables GitOps webhook
+  stack_webhook                 = true                      # Enables GitOps webhook
   update_interval               = "1m"                       # Auto-update interval
   pull_image                    = false                       # Pull latest image on update
   force_update                  = true                       # Prune services not in compose file
@@ -43,7 +43,7 @@ resource "portainer_stack" "unpublished_stacks" {
   tlsskip_verify            = false
 
   # Optional GitOps enhancements:
-  stack_webhook                 = false                      # Enables GitOps webhook
+  stack_webhook                 = true                      # Enables GitOps webhook
   update_interval               = "1m"                       # Auto-update interval
   pull_image                    = false                       # Pull latest image on update
   force_update                  = true                       # Prune services not in compose file
@@ -94,6 +94,7 @@ resource "cloudflare_zero_trust_access_policy" "app_policy" {
     create_before_destroy = true
   }
 }
+
 
 
 
