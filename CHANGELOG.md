@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.1](https://github.com/Gravitas-Security/portainer_module/compare/v0.8.0...v0.8.1) (2025-12-08)
+
+
+### Bug Fixes
+
+* changing stack_webhook to true ([91225ef](https://github.com/Gravitas-Security/portainer_module/commit/91225ef87e4f7c63dc7e748239a570dce4de6a1d))
+
 ## [0.8.0](https://github.com/Gravitas-Security/portainer_module/compare/v0.7.2...v0.8.0) (2025-12-08)
 
 
