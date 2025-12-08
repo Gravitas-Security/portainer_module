@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.0](https://github.com/Gravitas-Security/portainer_module/compare/v0.7.2...v0.8.0) (2025-12-08)
+
+
+### Features
+
+* Bumping version ([54ce3cb](https://github.com/Gravitas-Security/portainer_module/commit/54ce3cb3cc4d0fbe0b38ce8c2947b118cdd9637f))
+
 ## [0.7.2](https://github.com/Gravitas-Security/portainer_module/compare/v0.7.1...v0.7.2) (2025-07-17)
 
 
