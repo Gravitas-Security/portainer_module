@@ -21,5 +21,5 @@ terraform {
       tags = ["Portainer-IaC-Zone", "source:cli"]
     }
   }
-
 }
+
