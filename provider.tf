@@ -6,7 +6,7 @@ terraform {
   required_providers {
     portainer = {
       source  = "portainer/portainer"
-      version = ">= 1.6.1"
+      version = ">= 1.20.1"
     }
     cloudflare = {
       source  = "cloudflare/cloudflare"
@@ -21,4 +21,5 @@ terraform {
       tags = ["Portainer-IaC-Zone", "source:cli"]
     }
   }
+
 }
