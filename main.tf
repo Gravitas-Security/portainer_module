@@ -14,7 +14,7 @@ resource "portainer_stack" "published_stacks" {
   stack_webhook                 = true                      # Enables GitOps webhook
   update_interval               = "1m"                       # Auto-update interval
   pull_image                    = false                       # Pull latest image on update
-  force_update                  = true                       # Prune services not in compose file
+  force_update                  = false                       # Prune services not in compose file
   git_repository_authentication = true                   # If authentication is required
   repository_username           = var.gh_uname
   repository_password           = var.gh_pword
@@ -45,7 +45,7 @@ resource "portainer_stack" "unpublished_stacks" {
   stack_webhook                 = true                      # Enables GitOps webhook
   update_interval               = "1m"                       # Auto-update interval
   pull_image                    = false                       # Pull latest image on update
-  force_update                  = true                       # Prune services not in compose file
+  force_update                  = false                       # Prune services not in compose file
   git_repository_authentication = true                   # If authentication is required
   repository_username           = var.gh_uname
   repository_password           = var.gh_pword
@@ -93,6 +93,7 @@ resource "cloudflare_zero_trust_access_policy" "app_policy" {
     create_before_destroy = true
   }
 }
+
 
 
 
