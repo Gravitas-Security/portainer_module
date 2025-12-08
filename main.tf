@@ -27,7 +27,6 @@ resource "portainer_stack" "published_stacks" {
     value = env.value.value
   }
 }
-
 }
 
 resource "portainer_stack" "unpublished_stacks" {
@@ -94,6 +93,7 @@ resource "cloudflare_zero_trust_access_policy" "app_policy" {
     create_before_destroy = true
   }
 }
+
 
 
 
