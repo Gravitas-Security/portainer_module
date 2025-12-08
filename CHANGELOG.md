@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.2](https://github.com/Gravitas-Security/portainer_module/compare/v0.8.1...v0.8.2) (2025-12-08)
+
+
+### Bug Fixes
+
+* Modify force_update parameter for portainer_stack resources ([cfa0504](https://github.com/Gravitas-Security/portainer_module/commit/cfa050488bc82698badd54842fed9e7cc0fc5445))
+
 ## [0.8.1](https://github.com/Gravitas-Security/portainer_module/compare/v0.8.0...v0.8.1) (2025-12-08)
 
 
