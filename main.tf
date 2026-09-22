@@ -7,7 +7,7 @@ resource "portainer_stack" "published_stacks" {
   endpoint_id               = 2
   repository_url            = "https://github.com/CyberViking949/portainer_stacks"
   repository_reference_name = "refs/heads/main"
-  file_path_in_repository   = "/published_stack_files/${each.value.name}.yaml"
+  file_path_in_repository   = "published_stack_files/${each.value.name}.yaml"
   tlsskip_verify            = false
 
   # Optional GitOps enhancements:
@@ -38,7 +38,7 @@ resource "portainer_stack" "unpublished_stacks" {
   endpoint_id               = 2
   repository_url            = "https://github.com/CyberViking949/portainer_stacks"
   repository_reference_name = "refs/heads/main"
-  file_path_in_repository   = "/unpublished_stack_files/${each.value.name}.yaml"
+  file_path_in_repository   = "unpublished_stack_files/${each.value.name}.yaml"
   tlsskip_verify            = false
 
   # Optional GitOps enhancements:
